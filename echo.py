@@ -60,6 +60,12 @@ def echo(path):
     if not validate_status_code(status_code):
         status_code = 200
 
+    messages = []
+    print('got message, sleeping...')
+    # Simulate a slow return
+    time.sleep(10)
+    print('sending response')
+
     data = {
         'success' : True,
         'status' : status_code,
@@ -70,6 +76,7 @@ def echo(path):
         'base_url' : request.base_url,
         'url_root' : request.url_root,
         'method' : request.method,
+        'messages': messages,
         'headers' : extract(request.headers),
         'data' : request.data.decode(encoding='UTF-8'),
         'host' : request.host,
